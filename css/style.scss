@@ -1,0 +1,705 @@
+@import url('static.css');
+@import url('keyframes.css');
+@import url('vars.css');
+
+
+$maxWidth:1920;
+$maxWidthContainer: 1600;
+
+@mixin adaptive-font($pcSize, $mobSize) {
+    $addSize: $pcSize - $mobSize;
+    $addMobSize: $addSize + $addSize * 0.6;
+    @media (max-width:830px) {
+        font-size: calc(#{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth}));
+    }
+    @media (min-width:830px) {
+        font-size: calc(#{$mobSize + px} + #{$addSize} * (100vw / #{$maxWidth}));
+    }
+}
+
+
+@mixin adaptive-value ($property, $startSize, $minSize, $type) {
+    $addSize: $startSize - $minSize;
+    @if $type==1 {
+        //less than container
+        #{$property}: $startSize + px;
+        @media (max-width: #{$maxWidthContainer + px}) {
+            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+        }
+    } @else if $type == 2 {
+        //more than container
+        #{$property}: $startSize + px;
+        @media (min-width: #{$maxWidthContainer + px}) {
+            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+        }
+    } @else {
+        //forever
+        #{$property} :calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+    }
+}
+
+
+
+
+
+
+
+
+
+.intro{
+    width: 100%;
+    background: #fff;
+    overflow:hidden;
+    @include adaptive-value("padding-top", 100, 32, 0);
+    @include adaptive-value("padding-bottom", 600, 40, 0);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+
+    .left{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: flex-start;
+        z-index: 5;
+        @include adaptive-value("margin-left",100, 10, 0);
+        .logo{
+            margin-bottom:170px;
+            animation: appearing-logo 2s ease;
+            @include adaptive-value("margin-bottom",170, 80, 0);
+            // @media (max-width:1920px){
+            //     @include adaptive-value("margin-bottom",170, 80, 0);
+            // }
+            img{
+                @include adaptive-value("width", 405, 210 , 0)
+                // @media (max-width:1920px){
+                // }
+            }
+            // @media (max-width:1920px){
+            //     width: calc(210px + (405 - 210) * ((100vw - 320px) / (1920 - 320)));
+            // }
+        }
+        h1{
+            color: #000;
+            font-weight: 600;
+            font-size: 183px;
+            margin-bottom: 5px;
+            @include adaptive-font(183, 37);
+            // @media (max-width:1920px){
+            // }
+            height: fit-content;
+        }
+
+        .part_text{
+            text-transform: uppercase;
+            color: #000;
+            font-weight: 600;
+            font-size: 81px;
+            @include adaptive-value(" margin-left",10, 2,0);
+            &._anim-items{
+                &.active{
+                    transition-delay: .3s;
+                }
+            }
+            @include adaptive-font(81, 20);
+
+        }
+    }
+
+
+    .right{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        height: fit-content;
+        margin-top: 23%;
+        margin-right: 6%;
+        & > div{
+            position: absolute;
+            width: fit-content;
+            height: fit-content;
+        }
+        .main_logo{
+            z-index: 3;
+            margin-top: 9rem;
+            animation: appearing 3s ease;
+            @include adaptive-value("margin-top",144,192,0);
+            // @media (max-width:1920px){
+            //     @include adaptive-value("margin-top",144,192,0)
+            // }
+            img{
+                @include adaptive-value("width",830,100, 0);
+
+                // @media (max-width:1330px){
+                //     @include adaptive-value("width",830,100, 0);
+                // }
+            }
+        }
+        .background_logo{
+            z-index: 2;
+            animation: appearing_bg ease 4s;
+            @include adaptive-value("margin-top",20, 182,0);
+            // @media (max-width:1330px){
+            //     @include adaptive-value("margin-top",20, 182,0);
+            // }
+            img{
+                @include adaptive-value("width",620,80,0);
+                // @media (max-width:1330px){
+                //     @include adaptive-value("width",620,80,0);
+                // }
+            }
+        }
+        .background_rotate-round{
+            z-index: 1;
+            animation: 5s linear rotating infinite;
+            @include adaptive-value("margin-top",0,176, 0);
+
+            // @media (max-width:1920px){
+            //     @include adaptive-value("margin-top",0,176, 0)
+            // }
+
+            img{
+                @include adaptive-value("width",1574,192, 0);
+
+                // @media (max-width:1920px){
+                //     @include adaptive-value("width",1574,192, 0)
+                // }
+            }
+        }
+    }
+
+}
+
+
+
+
+
+.egor_kreed{
+    width: 100%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    @include adaptive-value("padding-top",300, 100,0);
+    @include adaptive-value("padding-bottom",350, 170,0);
+    @include adaptive-value("margin-top",-336, -80,0);
+
+    .egor{
+        width: 50%;
+        position: relative;
+        @include adaptive-value("left",-250,-80,0);
+
+        img{
+            @include adaptive-value("width",1100,270,0);
+            z-index: 6;
+            position: relative;
+        }
+
+        .link-to_blogger{
+            position: absolute;
+            top: 80%;
+            z-index: 7;
+            transform: translate(-50%, -50%);
+            @include adaptive-value("left",550, 130, 0);
+            &._anim-items{
+                &.active{
+                    animation: anim-text-right-left .8s ease;
+                }
+            }
+        }
+
+        .block__rounds{
+            display: flex;
+            flex-wrap: wrap;
+            position: absolute;
+            z-index: 1;
+            transform: rotate(60deg);
+            @include adaptive-value("width",1005,125,0);
+            @include adaptive-value("height",1005,125,0);
+            @include adaptive-value("top",500,190,0);
+            @include adaptive-value("left",-250,40,0);
+            &._anim-items.active{
+                opacity: 1;
+                transition: none;
+                .round{
+                    animation: dots-move 2s ease forwards;
+                    animation-delay: .2s;
+                    transform: scale(1.4);
+                    opacity: 0;
+                }
+            }
+
+            .round{
+                background: #000;
+                border-radius: 50%;
+                @include adaptive-value("width",170,20, 0);
+                @include adaptive-value("height",170,20, 0);
+                @include adaptive-value("margin",30,4, 0);
+            }
+        }
+    }
+
+
+    .tik-tok__item{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 9;
+        @include adaptive-value("margin-right",100, 10, 0);
+        &:nth-child(2){
+            @include adaptive-value("top",200 ,140,0 );
+            img{
+                @include adaptive-value("width", 783, 140, 0);
+            }
+        }
+        &:last-child{
+            @include adaptive-value("top",850,300,0);
+            img{
+                @include adaptive-value("width", 430, 100, 0);
+            }
+        }
+        img{
+            display: block;
+            object-fit: cover;
+            max-width: 100%;
+            transition: .4s ease;
+
+            cursor: pointer;
+            position: relative;
+            &._anim-items{
+                &.active{
+                    animation: egorkreed-videos 2s ease forwards;
+                }
+            }
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+        .video__short__title{
+            @include adaptive-font(60, 15);
+            text-align: right;
+            &._anim-items{
+                transition-delay: .3s;
+            }
+        }
+    }
+}
+
+
+
+
+.vashamarousia{
+    width: 100%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
+    overflow: hidden;
+    @include adaptive-value("padding-top",176, 96, 0);
+    @include adaptive-value("padding-bottom",320, 96, 0);
+    @include adaptive-value("margin-top",-170, -70, 0);
+
+
+    .tik-tok__shortcuts{
+        width: 100%;
+        position: relative;
+        z-index: 3;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        @include adaptive-value("margin-left",100, 10, 0);
+        // @include adaptive-value("max-width",600, 200, 0);
+        .tik-tok__item{
+            margin: 15px;
+            position: relative;
+            transform: translateX(-30%);
+            opacity: 0;
+            transition: .5s ease;
+            &._anim-items.active{
+                transform: translateX(0);
+                opacity: 1;
+                transition: .5s ease;
+                &:nth-child(1){transition-delay: .2s;}
+                &:nth-child(4){transition-delay: .2s;}
+                &:nth-child(6){transition-delay: .2s;}
+                &:nth-child(8){transition-delay: .2s;}
+            }
+            @include adaptive-value("margin",15, 5, 0);
+            img{
+                transform: scale(1);
+                @include adaptive-value("width",265,60,0);
+                &:first-child{
+                    position: relative;
+                    z-index: 5;
+                    transition: .5s ease;
+                    cursor: pointer;
+                    &:hover{
+                        transform: scale(1.1);
+                    }
+                }
+
+                &:last-child{
+                    filter: blur(20px);
+                    position: absolute;
+                    left: 0;
+                    z-index: 4;
+                    @include adaptive-value("top",40, 25,0 );
+                }
+            }
+        }
+    }
+
+    .statistics{
+        position: absolute;
+        left: 0;
+        @include adaptive-value("bottom",145, 40, 0);
+        @include adaptive-value("margin-left",70, 10, 0);
+        img{
+            @include adaptive-value("width",651,150,0);
+        }
+    }
+
+    .marusia{
+        position: relative;
+        @include adaptive-value("top",-335,-155,0);
+        @include adaptive-value("right",-220, 38, 0);
+        &::before{
+            content: '';
+            border-radius: 50%;
+            -webkit-filter: blur(30px);
+            filter: blur(30px);
+            background: #FF0000;
+            position: absolute;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            @include adaptive-value("width", 700,200, 0);
+            @include adaptive-value("height", 700,200, 0);
+            @include adaptive-value("top", 900,180, 0);
+            @include adaptive-value("right", -100, -74, 0);
+
+        }
+        img{
+            position: relative;
+            z-index: 5;
+            @include adaptive-value("width",1200, 260,0 );
+        }
+
+        .link-to_blogger{
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            z-index: 7;
+            transform: translate(-50%, -50%);
+            &._anim-items.active{
+                animation: anim-text-left-right 1s ease;
+            }
+        }
+    }
+    
+    .big__text{
+        position: relative;
+        z-index: 10;
+        @include adaptive-value("top",650,150,0);
+        @include adaptive-value("right",852,236,0);
+        h1{
+            display: flex;
+            flex-direction: column;
+            span{
+                font-weight: 700;
+                white-space: pre;
+                color: #000;
+                @include adaptive-value("font-size",430,100,0);
+                &:first-child{
+                    @include adaptive-value("margin-left",134, 0, 0);
+                }
+                &:last-child{
+                    @include adaptive-value("margin-top",-188, -36, 0);
+                    @include adaptive-value("margin-left",437, 43, 0);
+                }
+                &._anim-items{
+                    transform: translateX(-30%);
+                    opacity: 0;
+                    &.active{
+                        transform: translateX(0);
+                        opacity: 1; 
+                        transition: all 1s ease;
+                        &:last-child{
+                            transition: all 1.4s ease;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+.karrambaby{
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    @include adaptive-value("padding-top",240,0, 0);
+    @include adaptive-value("padding-bottom",240,100, 0);
+
+    .kara{
+        position: relative;
+        left: -420px;
+        @include adaptive-value("left",-420,-91,0);
+        &::before{
+            content: '';
+            position: absolute;
+            // top: 424px;
+            // right: 1064px;
+            // width: 1000px;
+            // height: 1000px;
+            background: #6853A0;
+            border-radius: 50%;
+            filter: blur(150px);
+            @include adaptive-value("top",424,91,0);
+            @include adaptive-value("right",800,48,0);
+            @include adaptive-value("width",1000,250,0);
+            @include adaptive-value("height",1000,250,0);
+            @media (max-width:992px){
+                filter: blur(50px);
+            }
+
+        }
+        .link-to_blogger{
+            position: absolute;
+            top: 80%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            @include adaptive-value("left",830,170,0);
+            span{
+                color: #000;
+            }
+
+            &._anim-items{
+                &.active{
+                    animation: anim-text-right-left .8s ease;
+                }
+            }
+        }
+        img{
+            // width: 2317px;
+            position: relative;
+            z-index: 7;
+            @include adaptive-value("width",1400,330, 0);
+            
+        }
+    }
+
+
+    
+
+    .tik-tok__shortcuts{
+        width: 100%;
+        position: relative;
+        z-index: 3;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        right: 155px;
+        @include adaptive-value("top",200,10,0 );
+        // @include adaptive-value("margin-right",200, 10, 0);
+        // @include adaptive-value("max-width",600, 200, 0);
+        .tik-tok__item{
+            margin: 15px;
+            position: relative;
+            transform: translateX(-30%);
+            opacity: 0;
+            transition: .5s ease;
+            &._anim-items.active{
+                transform: translateX(0);
+                opacity: 1;
+                transition: .5s ease;
+                &:nth-child(2){transition-delay: .2s;}
+                &:nth-child(4){transition-delay: .2s;}
+            }
+            @include adaptive-value("margin",15, 5, 0);
+            img{
+                @include adaptive-value("width",265,60,0);
+                &:first-child{
+                    position: relative;
+                    z-index: 5;
+                    transition: .4s ease;
+                    cursor: pointer;
+                    &:hover{
+                        transform: scale(1.1);
+                    }
+                }
+
+                &:last-child{
+                    filter: blur(20px);
+                    position: absolute;
+                    left: 0;
+                    z-index: 4;
+                    @include adaptive-value("top",40, 25,0 );
+                }
+            }
+        }
+    }
+
+    .kara__statistics{
+        position: absolute;
+        z-index: 19;
+        @include adaptive-value("right",44, 0, 0);
+        @include adaptive-value("top",1205, 190, 0);
+
+        img{
+            @include adaptive-value("width",645,145, 0);
+        }
+    }
+
+
+
+
+
+
+    .kara__logo{
+        position: relative;
+        @include adaptive-value("right",385,215, 0);
+        @include adaptive-value("top",1200,230, 0);
+        img{
+            position: relative;
+            transform: rotate(-30deg);
+            @include adaptive-value("width",508,127,0);
+            &._anim-items{
+                right: -100%;
+                transform: rotate(360deg);
+                transition: 1.5s ease;
+                &.active{
+                    right: 0;
+                    transform: rotate(-30deg);
+                    transition: 2s ease;
+                }
+            }
+        }
+    }
+}
+
+
+.danya_milokhin{
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include adaptive-value("padding-top",223,174,0);
+    @include adaptive-value("padding-bottom",700,174,0);
+    @include adaptive-value("margin-top",-526,-293,0);
+
+
+    .tik-tok__shortcuts{
+        width: 100%;
+        position: relative;
+        z-index: 3;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        @include adaptive-value("margin-left",100, 10, 0);
+        // @include adaptive-value("max-width",600, 200, 0);
+        .tik-tok__item{
+            margin: 15px;
+            position: relative;
+            transform: translateX(-30%);
+            opacity: 0;
+            transition: .5s ease;
+            &._anim-items.active{
+                transform: translateX(0);
+                opacity: 1;
+                transition: .5s ease;
+                &:nth-child(2){transition-delay: .2s;}
+                &:nth-child(4){transition-delay: .2s;}
+            }
+            @include adaptive-value("margin",15, 5, 0);
+            img{
+                @include adaptive-value("width",520,100,0);
+                &:first-child{
+                    position: relative;
+                    z-index: 5;
+                    transition: .4s ease;
+                    cursor: pointer;
+                    &:hover{
+                        transform: scale(1.1);
+                    }
+                }
+
+                &:last-child{
+                    filter: blur(20px);
+                    position: absolute;
+                    left: 0;
+                    z-index: 4;
+                    @include adaptive-value("top",40, 25,0 );
+                }
+            }
+        }
+    }
+
+    .danya{
+        position: relative;
+        @include adaptive-value("top",530,127,0);
+        @include adaptive-value("right",-56,66,0);
+        &::before{
+            content: ' ';
+            background: #FF0000;
+            border-radius: 50%;
+            -webkit-filter: blur(400px);
+            filter: blur(400px);
+            position: absolute;
+            @media (max-width:992px){
+                filter: blur(62px);
+            }
+            @include adaptive-value("top",226,53,0);
+            @include adaptive-value("right",0,53,0);
+            @include adaptive-value("width",1460,300,0);
+            @include adaptive-value("height",1460,300,0);
+
+        }
+        &>img{
+            position: relative;
+            z-index: 7;
+            @include adaptive-value("width",1734,370, 0);
+        }
+        .link-to_blogger{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            z-index: 7;
+            @include adaptive-value("top",1323,290,0);
+            @include adaptive-value("right",250,56,0);
+            span{
+                @include adaptive-value("font-size", 68,11,0);
+            }
+            &._anim-items.active{
+                animation: anim-text-left-right 1s ease;
+            }
+        }
+
+        .statistics{
+            position: relative;
+            z-index: 10;
+            @include adaptive-value("top",-297,-60,0);
+            @include adaptive-value("left",387,130,0);
+
+            img{
+                @include adaptive-value("width",744,127,0);
+            }
+        }
+    }
+    
+}

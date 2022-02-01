@@ -1,0 +1,14 @@
+._anim-items {
+  -webkit-transform: translateY(-30%);
+          transform: translateY(-30%);
+  opacity: 0;
+}
+
+._anim-items.active {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+  -webkit-transition: all .6s ease;
+  transition: all .6s ease;
+}
+/*# sourceMappingURL=vars.css.map */
