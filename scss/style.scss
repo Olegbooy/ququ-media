@@ -1,0 +1,784 @@
+@import 'fonts';
+@import 'static.scss';
+@import 'vars.scss';
+@import 'keyframes.scss';
+
+
+body{
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+
+
+.intro{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+    background: $wh;
+    @include adaptive-value("padding-top", 90,33,0);
+    @include adaptive-value("padding-bottom", 600,200,0);
+
+    .left{
+        @include adaptive-value("margin-left", 150, 10, 0);
+        z-index: 10;
+        .intro_title{
+            font-weight: 600;
+            @include adaptive-value("font-size", 183,32,0);
+            @include adaptive-value("margin-bottom", 15, 5, 0);
+
+            &._anim_items{
+                transform: translateY(-30%);
+                opacity: 0;
+                &.active{
+                    transform: translateY(0);
+                    opacity: 1;
+                    transition: .6s ease;
+                    transition-delay: .3s
+                }
+            }
+
+        }
+
+        .logo{
+            @include adaptive-value("margin-bottom", 210, 95, 0);
+            img{
+                @include adaptive-value("width", 400,170,0);
+            }
+            &._anim_items{
+                transform: translateX(-100%);
+                opacity: 0;
+                &.active{
+                    transform: translateX(0);
+                    opacity: 1;
+                    transition: 1s ease;
+                }
+            }
+        }
+
+        .intro_subtitle{
+            text-transform: uppercase;
+            color: $dark;
+            font-weight: 600;
+            @include adaptive-value("font-size", 80,25,0);
+            @include adaptive-value("margin-left", 10,1,0);
+            &._anim_items{
+                transform: translateY(-30%);
+                opacity: 0;
+                &.active{
+                    transform: translateY(0);
+                    opacity: 1;
+                    transition: .6s ease;
+                    transition-delay: .5s
+                }
+            }
+        }
+        color: $dark;
+    }
+    .right{
+        width: fit-content;
+        height: fit-content;
+        position: relative;
+        top: -184px;
+        right: -156px;
+        .logo__wrapper{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: fit-content;
+            height: fit-content;
+            &:first-child{
+                z-index: 3;
+                @include adaptive-value("right", -309, -90, 0);
+                @include adaptive-value("top", -513, 12, 0);
+                img{
+                    animation: rotating 3s linear infinite;
+                    @include adaptive-value("width", 1600, 480,0);
+                    @include adaptive-value("height", 1600, 480,0);
+                    border-radius:50%;
+                }
+
+            }
+            &:nth-child(2) {
+                z-index: 5;
+                animation: appearing_logo 3s ease;
+                @include adaptive-value("right", 0, 95, 0);
+                @include adaptive-value("top", 0, 162, 0);
+
+                img{
+                    animation: rotating_logo 3s ease;
+                    @include adaptive-value("width", 830, 183,0);
+                }
+            }
+            &:last-child{
+                z-index: 4;
+                animation: appearing_logo 4s ease;
+                @include adaptive-value("right", 0, 99, 0);
+                @include adaptive-value("top", 0, 160, 0);
+                img{
+                    animation: rotating_logo 3s ease;
+                    @include adaptive-value("width", 626,153,0);
+
+                }
+            }
+        }
+    }
+}
+
+
+
+.egor_kreed{
+    width: 100%;
+    background: transparent;
+    overflow: hidden;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    @include adaptive-value("padding-bottom", 500, 114, 0);
+    position: relative;
+    z-index: 50;
+    .egor{
+        position: relative;
+        // @include adaptive-value("right", 95, 40,0);
+        right: 11px;
+
+        // @include adaptive-value("transform:translateX",0,20,0);
+        .egor_wrapper{
+            position: relative;
+            img{
+                position: relative;
+                @include adaptive-value("width", 910, 250,0);
+                z-index: 10;
+            }
+        }
+        .link_to_blogger{
+            @include adaptive-value("left", 75, 20,0);
+            z-index: 12;
+            &._anim_items{
+                transform: translateX(60%);
+                opacity: 0;
+                &.active{
+                    transform: translateX(0);
+                    opacity: 1;
+                    transition: .7s ease;
+                }
+            }
+            &:hover{
+                transition: .5s ease;
+            }
+        }
+        .block_rounds{
+            flex-wrap: wrap;
+            display: flex;
+            position: absolute;
+            transform: rotate(242deg);
+            @include adaptive-value("bottom", -350, -78,0);
+            @include adaptive-value("left", -393, -98,0);
+            @include adaptive-value("width", 900, 230, 0);
+            @include adaptive-value("height", 900, 230, 0);
+            .round{
+                background: #000;
+                border-radius: 50%;
+                @include adaptive-value("width", 140, 40, 0);
+                @include adaptive-value("height", 140, 40, 0);
+                @include adaptive-value("margin", 40, 8, 0);
+            }
+            &._anim_items{
+                .round{
+                    transform: scale(1.5);
+                    transition: 1s ease;
+                }
+                &.active{
+                    .round{
+                        transform: scale(1);
+                        transition: 1s ease;
+                        transition-delay: .4s;
+                    }
+                }
+            }
+        }
+    }
+
+    .tik_tok__shortcuts{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+        @include adaptive-value("right",150,90,0);
+        .tik-tok__item{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            position: relative;
+            z-index: 10;
+            p{
+                color: $dark;
+                font-weight: 700;
+                z-index: 10;
+                @include adaptive-value("font-size",63,11,0);
+
+                @include adaptive-value("margin-bottom",30,16,0);
+                &._anim_items{
+                    transform: translateX(-40%);
+                    opacity: 0;
+                    &.active{
+                        transform: translateX(-30%);
+                        opacity: 1;
+                        transform: translateX(0);
+                        transition: .5s ease;
+                        transition-delay:.2s;
+                    }
+                }
+            }
+
+            .video_wrapper{
+                &._anim_items{
+                    transform: translateX(100%);
+                    opacity: 0;
+                    transition: .7s ease;
+                    &.active{
+                        transform: translateX(0);
+                        opacity: 1;
+                        transition: 1s ease;
+                    }
+                }
+                picture{
+                    overflow: hidden;
+                    cursor: pointer;
+                    &:hover source, &:hover img{
+                        transform: scale(1.1);
+                        transition: all .4s ease;
+                    }
+                    & source, & img{
+                        transition: all .4s ease;
+                    }
+                }
+            }
+
+            &:first-child{
+                @include adaptive-value("margin-bottom", 100, 5,0);
+                .video_wrapper{
+                    position: relative;
+                    picture{
+                        width: fit-content;
+                        height: fit-content;
+                        img{
+                            @include adaptive-value("width",780,149,0);
+                            z-index: 3;
+                        }
+                        source{
+                            @include adaptive-value("width",780,149,0);
+                        }
+                        &:first-child{
+                            position: relative;
+                            z-index: 3;
+                        }
+                    }
+                    .backround_blur{
+                        position: absolute;
+                        @include adaptive-value("width",888,176,0);
+                        z-index: 1;
+                        @include adaptive-value("top", -17, -6,0);
+                        @include adaptive-value("right", -67, -15,0);
+                    }
+                }
+            }
+
+            &:last-child{
+                .video_wrapper{
+                    position: relative;
+                    picture{
+                        img{
+                            @include adaptive-value("width",430,84,0);
+                        }
+                        source{
+                            @include adaptive-value("width",430,84,0);
+                        }
+
+                        &:first-child{
+                            position: relative;
+                            z-index: 3;
+                        }
+                    }
+
+                    .backround_blur{
+                        position: absolute;
+                        z-index: 1;
+                        @include adaptive-value("width",523,105,0);
+                        @include adaptive-value("top",18,2,0);
+                        @include adaptive-value("right",-50,-9,0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+.vashamarousia{
+    width: 100%;
+    overflow: hidden;
+    background: transparent;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    z-index: 30;
+    @include adaptive-value("padding-top",283, 109,0);
+    @include adaptive-value("padding-bottom",300, 109,0);
+    @include adaptive-value("top",-95, -57,0);
+    .tik-tok__shortcuts{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        position: relative;
+        @include adaptive-value("width", 607,145,0);
+        @include adaptive-value("left", 135, 10, 0);
+        z-index: 70;
+        .tik-tok__item{
+            position: relative;
+            @include adaptive-value("margin",15, 5, 0);
+            &._anim_items{
+                transform: translateX(-50%);
+                opacity: 0;
+                transition: .5s ease;
+                &.active{
+                    transform: translateX(0);
+                    opacity: 1;
+                    transition: .5s ease;
+                    &:nth-child(1){transition-delay: .3s;}
+                    &:nth-child(4){transition-delay: .3s;}
+                    &:nth-child(5){transition-delay: .3s;}
+                    &:nth-child(8){transition-delay: .3s;}
+                }
+            }
+            picture{
+                overflow: hidden;
+                cursor: pointer;
+                source{
+                    @include adaptive-value("width",265,60,0);
+                    position: relative;
+                    z-index: 4;
+                }
+                img{
+                    @include adaptive-value("width",265,60,0);
+                    transition: .4s ease;
+                    position: relative;
+                    z-index: 4;
+
+                }
+                &:hover source, &:hover img{
+                    transform: scale(1.17);
+                }
+            }
+            .backround_blur{
+                position: absolute;
+                z-index: 2;
+                @include adaptive-value("width", 356, 81,0);
+                @include adaptive-value("left", -48, -11,0);
+                @include adaptive-value("top", -14, -3,0);
+            }
+        }
+    }
+
+
+
+
+
+    .statistics{
+        // @include adaptive-value("left", 135, 10, 0);
+
+        position: absolute;
+        z-index:30;
+        @include adaptive-value("bottom", 126, 70,0);
+        @include adaptive-value("left", 116, 13,0);
+
+        picture{
+            img{
+                @include adaptive-value("width", 650, 130,0);
+            }
+            source{
+                @include adaptive-value("width", 650, 130,0);
+            }
+        }
+    }
+
+
+
+    .marousia{
+        position: relative;
+        top: -187px;
+        right: -50px;
+        @include adaptive-value("top", -187, -54,0);
+        @include adaptive-value("right", -50, 0,0);
+        .marousia_wrapper{
+            img{
+                z-index: 4;
+                position: relative;
+                @include adaptive-value("width", 860, 237,0);
+            }
+        }
+        .link_to_blogger{
+            z-index: 6;
+            @include adaptive-value("right", 90, 62,0);
+            span{
+                @include adaptive-value("font-size", 72, 13, 0);
+            }
+            &._anim_items{
+                transform: translateX(-60%);
+                opacity: 0;
+                &.active{
+                    transform: translateX(0);
+                    opacity: 1;
+                    transition: .7s ease;
+                }
+            }
+
+        }
+
+        .red_background{
+            position: absolute;
+            @include adaptive-value("top", 64, -26,0);
+            @include adaptive-value("right", -393, -110,0);
+            img{
+                @include adaptive-value("width",1130,315,0);
+            }
+        }
+    }
+
+    .big_text{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        @include adaptive-value("bottom", -8, 17, 0);
+        @include adaptive-value("right", 77, 65, 0);
+        h1{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            span{
+                color: #000;
+                font-weight: 700;
+                &._anim_items{
+                    transform: translateX(-50%);
+                    opacity: 0;
+                    &.active{
+                        transform: translateX(0);
+                        opacity: 1;
+                        transition: 1s ease;
+                        &:last-child{
+                            transition-delay:.3s; 
+                        }
+                        
+                    }
+                }
+                @include adaptive-value("font-size", 434,92,0);
+                &:first-child{
+                    @include adaptive-value("margin-right",-51,-53,0);
+
+                }
+
+                &:last-child{
+                    @include adaptive-value("margin-top",-192,-36,0);
+                    @include adaptive-value("margin-right",-400,-130,0);
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+.karrambaby{
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+    padding-top: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    top: -240px;
+    z-index: 10;
+    .kara{
+        position: relative;
+        .kara_wrapper{
+            position: relative;
+            z-index: 10;
+            img{
+                @include adaptive-value("width",820,205,0);
+            }
+        }
+        .link_to_blogger{
+            @include adaptive-value("top",1194, 275,0);
+            @include adaptive-value("left",63,16,0);
+            z-index: 30;
+            span{
+                color: #000;
+            }
+            &._anim_items{
+                transform: translateX(60%);
+                opacity: 0;
+                &.active{
+                    transform: translateX(0);
+                    opacity: 1;
+                    transition: .7s ease;
+                }
+            }
+        }
+        .purple_background{
+            position: relative;
+            width: fit-content;
+            height: fit-content;
+            @include adaptive-value("top",-1454,-486,0);
+            @include adaptive-value("left",-660,-202,0);
+            img{
+                position: relative;
+                @include adaptive-value("width",1713,536,0);
+                z-index: 2;
+            }
+            .block_rounds{
+                flex-wrap: wrap;
+                display: flex;
+                position: absolute;
+                transform: rotate(209deg);
+                @include adaptive-value("top", 373, 191,0);
+                @include adaptive-value("left", 254, 135,0);
+                @include adaptive-value("width", 780, 200, 0);
+                @include adaptive-value("height", 780, 200, 0);
+                .round{
+                    background: #000;
+                    border-radius: 50%;
+                    @include adaptive-value("width", 130, 40, 0);
+                    @include adaptive-value("height", 130, 40, 0);
+                    @include adaptive-value("margin", 14, 4, 0);
+                }
+            }
+        }
+    }
+
+    .tik-tok__shortcuts{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        position: relative;
+        @include adaptive-value("right", 520, 362, 0);
+        z-index: 70;
+        width: fit-content;
+        .tik-tok__item{
+            position: relative;
+            width: fit-content;
+
+            @include adaptive-value("margin",15, 5, 0);
+            &._anim_items{
+                transform: translateX(-50%);
+                opacity: 0;
+                transition: .5s ease;
+                &.active{
+                    transform: translateX(0);
+                    opacity: 1;
+                    transition: .5s ease;
+                    &:nth-child(1){transition-delay: .3s;}
+                    &:nth-child(4){transition-delay: .3s;}
+                    &:nth-child(5){transition-delay: .3s;}
+                    &:nth-child(8){transition-delay: .3s;}
+                }
+            }
+            picture{
+                overflow: hidden;
+                cursor: pointer;
+                source{
+                    @include adaptive-value("width",265,60,0);
+                    position: relative;
+                    z-index: 4;
+                }
+                img{
+                    @include adaptive-value("width",265,60,0);
+                    transition: .4s ease;
+                    position: relative;
+                    z-index: 4;
+
+                }
+                &:hover source, &:hover img{
+                    transform: scale(1.17);
+                }
+            }
+            .backround_blur{
+                position: absolute;
+                z-index: 2;
+                @include adaptive-value("width", 356, 81,0);
+                @include adaptive-value("left", -48, -11,0);
+                @include adaptive-value("top", -14, -3,0);
+            }
+        }
+    }
+
+    .statistics{
+        position: absolute;
+        z-index: 50;
+        @include adaptive-value("top", 988,390,0);
+        @include adaptive-value("right", 95,5,0);
+        picture{
+            img{
+                width: 645px;
+                @include adaptive-value("width", 645, 134,0);
+            }
+        }
+    }
+    .logo_aside{
+        position: absolute;
+        @include adaptive-value("top", 1250,451,0);
+        @include adaptive-value("right", -231,-67,0);
+        img{
+            width: 620px;
+            @include adaptive-value("width", 620, 156,0);
+        }
+        &._anim_items{
+            transform: translateX(100%);
+            transition: 1s ease;
+            img{
+                transform: rotate(360deg);
+                transition: 1s ease;
+            }
+            &.active{
+                transform: translateX(0);
+                transition: 1.5s ease;
+                img{
+                    transform: rotate(0);
+                    transition: 1.5s ease;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+.danya_milokhin{
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+    padding: 60px 0 270px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    @include adaptive-value("margin-top", -1830, -810,0);
+    .tik-tok__shortcuts{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        position: relative;
+        @include adaptive-value("left", 165, 25, 0);
+        z-index: 70;
+        .tik-tok__item{
+            position: relative;
+            @include adaptive-value("margin",15, 5, 0);
+            &._anim_items{
+                transform: translateX(-50%);
+                opacity: 0;
+                transition: .5s ease;
+                &.active{
+                    transform: translateX(0);
+                    opacity: 1;
+                    transition: .5s ease;
+                    &:nth-child(2){transition-delay: .3s;}
+                }
+            }
+            picture{
+                cursor: pointer;
+                source{
+                    @include adaptive-value("width",520,100,0);
+                    position: relative;
+                    z-index: 4;
+                }
+                img{
+                    @include adaptive-value("width",520,100,0);
+                    transition: .4s ease;
+                    position: relative;
+                    z-index: 4;
+    
+                }
+                &:hover source, &:hover img{
+                    transform: scale(1.17);
+                }
+            }
+            .backround_blur{
+                position: absolute;
+                z-index: 2;
+                @include adaptive-value("width", 600, 122,0);
+                @include adaptive-value("left", -37, -12,0);
+                @include adaptive-value("top", 7, -7,0);
+            }
+        }
+    }
+    .danya{
+        position: relative;
+        z-index: 20;
+        picture{
+            position: relative;
+            @include adaptive-value("right", -403,-23,0);
+            @include adaptive-value("top", 265,124,0);
+            img{
+                @include adaptive-value("width", 980, 194,0);
+            }
+            source{
+                @include adaptive-value("width", 980, 194,0);
+            }
+        }
+        .link_to_blogger{
+            @include adaptive-value("top", 1500,350,0);
+            @include adaptive-value("right",-340,-11,0);
+            span{
+                @include adaptive-value("font-size", 56, 11, 0);
+                @include adaptive-value("border-radius", 57,14,0);
+                @include adaptive-value("padding-right", 38,10,0);
+                @include adaptive-value("padding-left", 38,10,0);
+            }
+            &._anim_items{
+                transform: translateX(-60%);
+                opacity: 0;
+                &.active{
+                    transform: translateX(0);
+                    opacity: 1;
+                    transition: .7s ease;
+                }
+            }
+        }
+
+    }
+
+    .statistics{
+        position: relative;
+        z-index: 30;
+        @include adaptive-value("top", -25, 74,0);
+        @include adaptive-value("right",240,108,0);
+        picture{
+            img{
+                @include adaptive-value("width",587,118,0);
+            }
+            source{
+                @include adaptive-value("width",587,118,0);
+            }
+        }
+    }
+}
